@@ -12,8 +12,17 @@ run() {
   script="$2"
   echo ""
   echo "############ SCENARIO: $name ############"
+  set +e
   SCENARIO_NAME="$name" SUMMARY_JSON="$RESULTS_DIR/$name-summary.json" \
     k6 run --summary-trend-stats="avg,p(90),p(95),p(99),max" "$script"
+  code=$?
+  set -e
+  if [ "$code" -eq 99 ]; then
+    echo "NOTE: scenario $name cruzó umbrales (hallazgo, no error) — sigo con el siguiente."
+  elif [ "$code" -ne 0 ]; then
+    echo "ERROR: scenario $name falló con exit code $code (error real). Aborto la suite."
+    exit "$code"
+  fi
   echo "--- JSON SUMMARY ($name) ---"
   if [ -f "$RESULTS_DIR/$name-summary.json" ]; then
     cat "$RESULTS_DIR/$name-summary.json"
