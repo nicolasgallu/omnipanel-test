@@ -1,0 +1,25 @@
+# Build del generador de carga y push a Artifact Registry.
+# La carpeta load-tests/ es autónoma: este archivo + Dockerfile + scripts.
+#
+# Ejecutar desde la raíz del repo (el contexto de build es load-tests/):
+#   gcloud builds submit --config load-tests/cloudbuild.yaml load-tests/
+#
+# _IMAGE ya apunta a tu registry real. Si querés otro tag, pasalo por
+# sustitución:
+#   gcloud builds submit --config load-tests/cloudbuild.yaml load-tests/ \
+#     --substitutions=_IMAGE=us-central1-docker.pkg.dev/nicoservertest/load-test/load-tests:v2
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - -t
+      - '$_IMAGE'
+      - -f
+      - Dockerfile
+      - .
+
+substitutions:
+  _IMAGE: 'us-central1-docker.pkg.dev/nicoservertest/load-test/load-tests:latest'
+
+images:
+  - '$_IMAGE'
