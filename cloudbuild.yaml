@@ -18,6 +18,12 @@ steps:
       - Dockerfile
       - .
 
+# Logs solo a Cloud Logging (sin bucket GCS). Obligatorio cuando el build
+# corre con una service account explícita (como en tu trigger de GitHub):
+# sin esto, la API rechaza el trigger con el error de "build.logs_bucket".
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 substitutions:
   _IMAGE: 'us-central1-docker.pkg.dev/nicoservertest/load-test/load-tests:latest'
 

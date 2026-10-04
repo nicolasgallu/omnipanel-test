@@ -48,6 +48,14 @@ extraer/pushear a tu repo tal cual.
 gcloud builds submit --config load-tests/cloudbuild.yaml load-tests/
 ```
 
+> Si usás un **trigger de GitHub** y te da el error
+> `if 'build.service_account' is specified, the build must either (a) specify
+> 'build.logs_bucket'...`: ya está resuelto en el `cloudbuild.yaml` (incluye
+> `options.logging: CLOUD_LOGGING_ONLY` — logs a Cloud Logging, sin bucket).
+> Además, la service account que usa el trigger necesita el rol
+> **Artifact Registry Writer** sobre el repo (o el proyecto) para poder
+> pushear la imagen.
+
 ## Deploy del job
 
 ```bash
