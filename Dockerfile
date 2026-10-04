@@ -8,8 +8,10 @@ ENV K6_NO_USAGE_REPORT=true
 WORKDIR /app
 COPY . .
 
-# El contenedor corre como usuario no-root (así lo define la base de k6):
-# /results debe existir y ser escribible para volcar los summary JSON.
+# La base de k6 define USER no-root; volvemos a root para poder crear /results
+# durante el build (y que el job lo pueda escribir en runtime). Correr como
+# root es OK para un job de load tests (contenedor efímero, sin mounts sensibles).
+USER root
 RUN mkdir -p /results && chmod 777 /results
 
 ENTRYPOINT []
