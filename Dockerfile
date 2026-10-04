@@ -8,5 +8,9 @@ ENV K6_NO_USAGE_REPORT=true
 WORKDIR /app
 COPY . .
 
+# El contenedor corre como usuario no-root (así lo define la base de k6):
+# /results debe existir y ser escribible para volcar los summary JSON.
+RUN mkdir -p /results && chmod 777 /results
+
 ENTRYPOINT []
 CMD ["sh", "/app/run.sh"]

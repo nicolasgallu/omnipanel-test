@@ -1,5 +1,7 @@
 import { sleep } from 'k6';
 import { emailA, passA, emailB, passB, login, userJourney } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Stress: sube hasta romper para encontrar el punto de quiebre.
 // Umbrales holgados a propósito: el job da FAIL cuando error rate > 5% o

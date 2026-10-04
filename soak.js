@@ -1,5 +1,7 @@
 import { sleep } from 'k6';
 import { emailA, passA, emailB, passB, login, userJourney } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Soak: carga sostenida durante horas para detectar fugas de memoria y
 // degradación por tiempo (conexiones que no se cierran, colas que crecen).

@@ -1,6 +1,8 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 import { BASE_URL, emailA, passA, emailB, passB, login, authHeaders, userJourney } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Aislamiento multi-tenant:
 // 1) setup(): verifica UNA vez que A y B no comparten productos y que el

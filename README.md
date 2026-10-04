@@ -86,6 +86,11 @@ Al final, además del summary de cada escenario, el job imprime un
 **CONSOLIDATED REPORT** (una línea por escenario: req/s, p95, p99, error
 rate). Copiá el log (o ese bloque) y pasáselo al agente para el informe.
 
+> Si el job falla con `mkdir: can't create directory '/results': Permission
+> denied`, es porque la imagen corre como usuario no-root. Ya está arreglado
+> en el `Dockerfile` (crea `/results` escribible). Si no querés rebuildear,
+> agregá `RESULTS_DIR=/tmp/results` al job como workaround inmediato.
+
 ## Variables de entorno
 
 | Variable | Qué hace | Default |

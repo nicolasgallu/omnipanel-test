@@ -15,7 +15,11 @@ run() {
   SCENARIO_NAME="$name" SUMMARY_JSON="$RESULTS_DIR/$name-summary.json" \
     k6 run --summary-trend-stats="avg,p(90),p(95),p(99),max" "$script"
   echo "--- JSON SUMMARY ($name) ---"
-  cat "$RESULTS_DIR/$name-summary.json"
+  if [ -f "$RESULTS_DIR/$name-summary.json" ]; then
+    cat "$RESULTS_DIR/$name-summary.json"
+  else
+    echo "(no summary JSON written)"
+  fi
   echo ""
 }
 

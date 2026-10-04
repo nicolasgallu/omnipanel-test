@@ -1,5 +1,7 @@
 import http from 'k6/http';
 import { BASE_URL } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Webhook flood en MODO SEGURO: user_id=0 no existe => el dispatcher responde
 // 200 "ignored" ANTES de escribir en `events` y sin encolar handlers, o sea

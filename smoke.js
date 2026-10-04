@@ -1,5 +1,7 @@
 import http from 'k6/http';
 import { BASE_URL, emailA, passA, emailB, passB, login, authHeaders } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Smoke: validación rápida de configuración ANTES de la suite.
 // Si la URL, las credenciales o los endpoints principales no andan, el job

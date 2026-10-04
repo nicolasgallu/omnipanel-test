@@ -1,6 +1,8 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 import { BASE_URL, emailA, passA, login, authHeaders } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Saturación de MySQL A TRAVÉS de la app (sin acceso directo a Cloud SQL):
 // cada GET de detalle de producto abre hasta 5 conexiones en paralelo

@@ -1,5 +1,7 @@
 import http from 'k6/http';
 import { BASE_URL } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Rate-limit / abuso: UNA sola identidad martilla el endpoint de login con
 // credenciales inválidas a tasa fija. Descubre si existe throttling/protección.

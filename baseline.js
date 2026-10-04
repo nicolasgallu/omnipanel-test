@@ -1,5 +1,7 @@
 import { sleep } from 'k6';
 import { emailA, passA, login, userJourney } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Baseline: comportamiento en reposo (5 VUs x 1m). Es el punto de comparación
 // para todos los demás números: si load/stress no se parecen a esto, algo

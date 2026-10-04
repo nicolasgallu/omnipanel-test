@@ -1,6 +1,8 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 import { BASE_URL, emailA, passA, login, authHeaders } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Concurrencia sobre EL MISMO recurso: muchos VUs pegan al mismo producto.
 // - GET (siempre): mide contención de lectura + pool de conexiones de MySQL.

@@ -1,5 +1,7 @@
 import { sleep } from 'k6';
 import { emailA, passA, emailB, passB, login, userJourney } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Spike: pico brusco (de 5 a 500 VUs en 10s) y vuelta a la calma.
 // Mide si la app cae, se encola o aguanta el pico, y cuánto tarda en volver.

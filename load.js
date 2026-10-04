@@ -1,5 +1,7 @@
 import { sleep } from 'k6';
 import { emailA, passA, emailB, passB, login, userJourney } from './lib.js';
+import { handleSummary } from './summary.js';
+export { handleSummary };
 
 // Load test: carga esperada creciente + una sonda del tenant B para medir
 // "noisy neighbor" (B no debe degradarse mientras A está a plena carga).
